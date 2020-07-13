@@ -1,0 +1,15 @@
+methods:
+  - &get_no_header
+    method: get
+    headers: ~
+  - &get_header
+    method: get
+    headers:
+      uId: !!str 88731867704197357
+
+paramss:
+  - &followcorpusId
+    corpusId: 78552860459270153
+
+test_register_sys_user_by_phone:
+  123
