@@ -1,3 +1,4 @@
+"""接口类型"""
 import requests
 
 

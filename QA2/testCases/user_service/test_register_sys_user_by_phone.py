@@ -9,6 +9,21 @@ def test_register_sys_user_by_phone(case_data):
     data = case_data
     print(data)
 
-# file_name = "test_register_sys_user_by_phone"
-# data = {'methods': [{'method': 'get', 'headers': None}, {'method': 'get', 'headers': {'uId': '88731867704197357'}}], 'paramss': [{'corpusId': 78552860459270153}], 'test_register_sys_user_by_phone': 123}
-# print(data.get(file_name))
+# path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# file_path = os.path.join(path, 'reports')
+# list = os.listdir(file_path)
+# print(path)
+# print(list)
+
+# file_name = os.path.basename(__file__)
+# path1 = os.path.abspath(__file__)
+# path2 = os.path.dirname(__file__)
+# path3 = os.path.split(__file__)
+# path4 = os.path.splitext(__file__)
+# print(file_name)
+# print(path1)
+# print(path2)
+# print(path3)
+# print(path4)
+
+
