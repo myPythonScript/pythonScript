@@ -16,7 +16,8 @@ def driver():
         "appActivity": ".activity.SplashActivity",
         "automationName": "UiAutomator2",
         "noReset": "True",
-        "newCommandTimeout": "600"
+        "newCommandTimeout": "60000",
+        'Accept-Language': 'zh-CN,zh;q=0.9'
     }
     # 三星
     # caps = {
@@ -27,7 +28,7 @@ def driver():
     #     "appActivity": ".activity.SplashActivity",
     #     "automationName": "UiAutomator2",
     #     "noReset": "True",
-    #     "newCommandTimeout": "600"
+    #     "newCommandTimeout": "60000"
     # }
     print("启动app")
     driver = webdriver.Remote('http://localhost:4723/wd/hub', caps)

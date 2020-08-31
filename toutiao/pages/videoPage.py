@@ -6,10 +6,12 @@ class VideoPage(object):
     video_btn_loc = ("id", "com.ss.android.article.lite:id/ex")
     # 视频
     open_video_loc = ("id", "com.ss.android.article.lite:id/zh")
+    # 视频卡片
+    video_loc = ("id", "com.ss.android.article.lite:id/b_")
     # 播放时长
     video_time_loc = ("id", "com.ss.android.article.lite:id/ic")
     # 播放按钮
-    play_btn_loc = ("id", "com.ss.android.article.lite:id/iy")
+    play_btn_loc = ("id", "com.ss.android.article.lite:id/jf")
     # 关闭广告
     close_advert_loc = ("id", "com.ss.android.article.lite:id/e6")
     # 重播
@@ -23,8 +25,12 @@ class VideoPage(object):
         video_ele = self.driver.find_elements(*self.video_btn_loc)[1]
         return video_ele
 
-    def count_video(self):
+    def count_video1(self):
         count_video = self.driver.find_elements(*self.open_video_loc)
+        return count_video
+
+    def count_video2(self):
+        count_video = self.driver.find_elements(*self.video_loc)
         return count_video
 
     def video_time_itm(self):
@@ -36,4 +42,7 @@ class VideoPage(object):
 
     def replay_itm(self):
         replay_itm = self.driver.find_elements(*self.replay_btn_loc)
-        return replay_itm
+        if len(replay_itm) == 0:
+            return False
+        else:
+            return True

@@ -2,10 +2,10 @@
 from time import sleep
 import random
 from pages.jobPage import JobPage
-from testcases import open_box
-from testcases import read_book
-from testcases import video_play
-from testcases.actions import Actions
+from base.actions import up_swipe
+from base import video_play
+from base import open_box
+from base import read_book
 
 
 def test_open_box(driver):
@@ -14,8 +14,7 @@ def test_open_box(driver):
     job_page = JobPage(driver)
     # 等待界面加载完成
     driver.implicitly_wait(30)
-    i = 1
-    while i <= 10:
+    while True:
         time_item = job_page.time_itm()
         print("time_item:%s" % time_item)
         if time_item != "任务":
@@ -26,17 +25,17 @@ def test_open_box(driver):
             # 跳转至我的界面
             time_slp = random.randint(1, 5)
             sleep(time_slp)
+            # 阅读小说
             read_book.read_book(driver, job_page)
-            i += 1
-            print("i=%d" % i)
+            # # 播放视频
+            # video_play.video_play(driver)
             continue
         else:
             print("倒计时已完成，打开宝箱")
             # 打开宝箱
             open_box.open_box(driver, job_page)
-            i += 1
-            print("i=%d" % i)
-            Actions(driver).up_swipe()
+            # 上滑查看读书次数
+            up_swipe(driver)
             read_count = job_page.read_book_count()
             if read_count is True:
                 video_play.video_play(driver)

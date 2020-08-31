@@ -64,16 +64,21 @@
 # driver.quit()
 
 
+# from selenium import webdriver
+# from time import sleep
+#
+# driver = webdriver.Chrome()
+# driver.get('http://39.104.14.232/ecshop/wwwroot/goods.php?id=202')
+#
+# driver.maximize_window()
+#
+# driver.find_element_by_link_text('加入购物车').click()
+# driver.find_element_by_class_name("span").click()
+# driver.switch_to.frame('formCart')
+# driver.find_element_by_css_selector('#formCart > div > div.cart-panel-footer > div > a').click()
+
+
 from selenium import webdriver
-from time import sleep
-
 driver = webdriver.Chrome()
-driver.get('http://39.104.14.232/ecshop/wwwroot/goods.php?id=202')
-
-driver.maximize_window()
-
-driver.find_element_by_link_text('加入购物车').click()
-driver.find_element_by_class_name("span").click()
-driver.switch_to.frame('formCart')
-driver.find_element_by_css_selector('#formCart > div > div.cart-panel-footer > div > a').click()
+size = driver.get_window_size()
 

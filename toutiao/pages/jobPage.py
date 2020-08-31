@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-from selenium.webdriver.common.by import By
 
 
 class JobPage(object):
@@ -10,7 +9,7 @@ class JobPage(object):
     job_btn_loc = ("id", "com.ss.android.article.lite:id/ex")
     # 宝箱
     box_img_loc = ("xpath",
-                   "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[4]/android.view.View/android.widget.Image")
+                   "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[13]/android.view.View/android.widget.Image")
     video_btn_loc = ("xpath",
                      "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.app.Dialog/android.view.View/android.view.View[2]/android.view.View[3]")
     # 倒计时完成
@@ -19,16 +18,6 @@ class JobPage(object):
     now_open_btn_loc = ("id", "com.ss.android.article.lite:id/a_4")
     # 小说阅读次数
     book_read_loc = ("xpath", "//*[contains(@text, '每天可赚1500金币，已完成')]")
-    # 我的界面
-    book_img_loc = ("id", "com.bytedance.common.plugin.edgeplugin:id/mine_novel_history_imgv")
-    back_btn_loc = ("id", "com.bytedance.novelplugin:id/back_button")
-    book_video_loc = ("id", "com.bytedance.novelplugin:id/novel_coin_exciting_ad_btn")
-
-    # 即时推送界面
-    # 弹窗提示获取金币
-    msg_img_loc = ("id", "com.ss.android.article.lite:id/a0a")
-    # 立即查看按钮.
-    check_btn_loc = ('id', "com.ss.android.article.lite:id/i6")
 
     # 点击栏底任务按钮
     def job_itm(self):
@@ -61,13 +50,3 @@ class JobPage(object):
         print(read_text)
         if read_text == "每天可赚1500金币，已完成30/30次":
             return True
-
-    def book_itm(self):
-        self.driver.find_element(*self.book_img_loc).click()
-
-    def back_itm(self):
-        self.driver.find_elements(*self.back_btn_loc)
-
-    def book_video_itm(self):
-        book_video = self.driver.find_elements(*self.book_video_loc)
-        return book_video

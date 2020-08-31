@@ -4,7 +4,6 @@ import pytest
 from jsonschema import validate
 
 
-
 def test_register_sys_user_by_phone(case_data):
     data = case_data
     print(data)
@@ -25,5 +24,3 @@ def test_register_sys_user_by_phone(case_data):
 # print(path2)
 # print(path3)
 # print(path4)
-
-
