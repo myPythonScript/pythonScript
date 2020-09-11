@@ -78,7 +78,5 @@
 # driver.find_element_by_css_selector('#formCart > div > div.cart-panel-footer > div > a').click()
 
 
-from selenium import webdriver
-driver = webdriver.Chrome()
-size = driver.get_window_size()
+
 
