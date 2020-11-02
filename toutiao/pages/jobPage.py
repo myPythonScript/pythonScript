@@ -8,11 +8,9 @@ class JobPage(Page):
     job_btn_loc = ("id", "com.ss.android.article.lite:id/ex")
 
     # 宝箱
-    box_img_loc = ("xpath",
-                   "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[13]/android.view.View/android.widget.Image")
-    # 宝箱打开后的广告
+    box_img_loc = ("xpath","//*[@text='treasure-box-enable-1.da338c08']")
     video_btn_loc = ("xpath",
-                     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.app.Dialog/android.view.View/android.view.View[2]/android.view.View[3]")
+                     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TabHost/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.app.Dialog/android.view.View/android.view.View[2]/android.view.View[3]")
     # 倒计时完成
     time_btn_loc = ("id", "com.ss.android.article.lite:id/ey")
 
@@ -23,6 +21,7 @@ class JobPage(Page):
     book_read_loc = ("xpath", "//*[contains(@text, '每天可赚1500金币，已完成')]")
 
     # 导航栏的“任务”
+
     def job_itm(self):
         self.driver.find_elements(*self.job_btn_loc)[3].click()
         print("跳转至任务界面")
@@ -71,9 +70,11 @@ class JobPage(Page):
             return True
 
     def open_box(self):
+        sleep(5)
         # 宝箱
         self.box_itm()
         self.driver.implicitly_wait(30)
         # 点击看视频
         self.box_video()
         sleep(20)
+        self.driver.keyevent(4)

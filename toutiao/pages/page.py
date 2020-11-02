@@ -51,3 +51,15 @@ class Page(object):
         else:
             class_name = 'android.widget.EditText'
         return self.driver.find_element('class name', class_name)
+
+    def wait_element_by(self, time_sleep, method, ele_id):
+        while True:
+            res = self.driver.find_elements(method, ele_id)
+            print("res:%s" % res)
+            if len(res) == 0:
+                print("还没有找到")
+                sleep(int(time_sleep))
+            else:
+                print("已找到")
+                break
+        return True

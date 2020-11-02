@@ -29,15 +29,16 @@ def driver():
         "appActivity": ".activity.SplashActivity",
         "automationName": "UiAutomator2",
         "noReset": "True",
-        "newCommandTimeout": "60000",
+        "newCommandTimeout": "150000",
         'Accept-Language': 'zh-CN,zh;q=0.9'
     }
     print("\n启动APP")
     driver = webdriver.Remote('http://localhost:4723/wd/hub', caps)
     sleep(6)
-    yield driver
-    print("关闭APP")
-    driver.quit()
+    return driver
+    # yield driver
+    # print("关闭APP")
+    # driver.quit()
 
 
 @pytest.fixture(scope='session')
@@ -57,17 +58,23 @@ def video_page(driver):
 
 @pytest.fixture(scope="session")
 def assert_open_box(job_page, my_page, video_page):
-    for i in range(1, 10):
-        result = job_page.is_time_to_open()
-        if result is True:
-            print("已完成")
-            job_page.job_itm()
-            job_page.open_box()
-        else:
-            print("未完成")
-            # job_page.my_itm()
-            # sleep(5)
-            # my_page.read_book_func()
-            job_page.video_itm()
-            sleep(5)
-            video_page.play_video()
+    try:
+        for i in range(1, 10):
+            result = job_page.is_time_to_open()
+            if result is True:
+                print("已完成")
+                job_page.job_itm()
+                job_page.open_box()
+            else:
+                print("未完成")
+                # job_page.my_itm()
+                # sleep(5)
+                # my_page.read_book_func()
+                job_page.video_itm()
+                sleep(5)
+                video_page.play_video()
+        # job_page.video_itm()
+        # sleep(5)
+        # video_page.play_video()
+    except Exception as error:
+        print(error)

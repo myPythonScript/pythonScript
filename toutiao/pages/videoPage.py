@@ -19,17 +19,16 @@ class VideoPage(Page):
     # 关闭广告
     close_advert_loc = ("id", "com.ss.android.article.lite:id/e6")
     # 重播
-    replay_btn_loc = ("id", "com.ss.android.article.lite:id/ie")
+    # replay_btn_loc = ("id", "com.ss.android.article.lite:id/ie")
+    replay_btn_loc = ("xpath", "//*[@text='重播']")
+    # 广告标记
+    advert_tab_loc = ("id", "com.ss.android.article.lite:id/pw")
     # 广告视频
     advert_video_loc = ("id", "com.ss.android.article.lite:id/pw")
 
-    def count_video1(self):
-        count_video = self.driver.find_elements(*self.open_video_loc)
-        return count_video
-
-    def count_video2(self):
-        count_video = self.driver.find_elements(*self.video_loc)
-        return count_video
+    # def count_video1(self):
+    #     count_video = self.driver.find_elements(*self.open_video_loc)
+    #     return count_video
 
     def video_time_itm(self):
         self.driver.find_element(*self.video_time_loc)
@@ -43,17 +42,14 @@ class VideoPage(Page):
         return play_buttons
 
     def replay_itm(self):
-        # replay_itm = self.driver.find_elements(*self.replay_btn_loc)
-        # print("重播：%s" % replay_itm)
-        # # res = assert replay_itm in self.driver.page_source
-        # # print("res:%s" % res)
-        # if len(replay_itm) == 0:
-        #     return False
-        # else:
-        #     return True
-        res = WebDriverWait(self.driver, 60).until(
-            EC.element_to_be_clickable((By.ID, "com.ss.android.article.lite:id/ie")), message="timeout")
-        if res == 'timeout':
+        replay_loc = "com.ss.android.article.lite:id/ie"
+        result = self.wait_element_by(6, "id", replay_loc)
+        return result
+
+    def is_advert_label(self):
+        advert = self.driver.find_elements(*self.advert_tab_loc)
+        print("advert:%s" % advert)
+        if len(advert) == 0:
             return False
         else:
             return True
@@ -64,9 +60,12 @@ class VideoPage(Page):
     def play_video(self):
         play_buttons = self.play_btn()
         for i in play_buttons:
-            i.click()
-            res = self.replay_itm()
-            if res is True:
+            advert_tab = self.is_advert_label()
+            if advert_tab is True:
+                print("广告视频，跳过")
+                self.up_swipe()
                 continue
-            else:
+            i.click()
+            rest = self.replay_itm()
+            if rest is True:
                 break
