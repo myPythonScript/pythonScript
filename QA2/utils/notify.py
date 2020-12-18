@@ -32,6 +32,7 @@ msg["Subject"] = 'test send email'
 body = MIMEText(content, 'plain', 'utf-8')
 msg.attach(body)
 
+
 f = open('123.txt', 'rb')
 data = f.read()
 

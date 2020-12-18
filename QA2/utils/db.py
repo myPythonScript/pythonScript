@@ -64,18 +64,21 @@ load_dotenv(find_dotenv())
 
 
 class DB(object):
-    def __init__(self, set_name):
+    def __init__(self):
         self.client = pymongo.MongoClient(os.environ.get("url"))
         self.db = self.client.qsdb
-        self.col = self.db[set_name]
 
-    def find_data(self):
-        rest = self.col.find()
+    def find_data(self, set_name, column_name, column_value):
+        col = self.db[set_name]
+        rest = col.find({column_name: column_value})
         return rest
 
 
 if __name__ == "__main__":
-    db = DB("user")
-    res = db.find_data()
+    db = DB()
+    res = db.find_data("collected", "name", "收藏夹9")
     for i in res:
-        print(i)
+        print(i["_id"])
+    with open("123.txt", "r+", encoding="utf-8") as f:
+        data = f.readlines()
+        print((data[1].split(":", 1))[1])

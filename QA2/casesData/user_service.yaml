@@ -1,15 +1,75 @@
+# 接口所需数据相关参数
+parametric:
+  # 收藏夹id
+  - id: &collect_id
+      collect_id: !!str 5fdb03a5924266ba555dbc14
+# 服务相关参数
 methods:
-  - &get_no_header
-    method: get
-    headers: ~
-  - &get_header
-    method: get
+  - &server
+    # 内网环境
+    server: http://192.168.1.91:8040
+
+  - &headers
     headers:
-      uId: !!str 88731867704197357
+      X-Token: eyJhbGciOiJIUzI1NiJ9.eyJjY0lkIjowLCJ1c2VySWQiOiI1ZmNmMzBlZDE2YjkyOTMwMThmYjQ3OWMiLCJpYXQiOjE2MDc5OTc3MjMsImV4cCI6MTYwOTIwNzMyM30.53i5J21EElG_G0tqe8aqebu_zz3tdLKWaJvj0igTbuY
 
-paramss:
-  - &followcorpusId
-    corpusId: 78552860459270153
+  - &get_no_headers
+    headers:
+    method: get
 
-test_register_sys_user_by_phone:
-  123
+  - &get
+    method: get
+
+  - &post
+    method: post
+
+  - &put
+    method: put
+
+  - &delete
+    method: delete
+
+test_send_sms_code_for_registry:
+  <<: *server
+  url: /user/sendSMSCodeForRegistry
+  <<: *get_no_headers
+  params:
+     phone: !!int 13572561700
+
+# 创建收藏夹
+test_collect_create:
+  <<: *server
+  <<: *headers
+  <<: *post
+  url: /collect/create
+  params:
+    collectName: 收藏夹1
+
+# 获取收藏夹列表
+test_collect_find_collect_list:
+  <<: *server
+  <<: *headers
+  <<: *get
+  url: /collect/findCollectList
+  params:
+    lastId: ""
+    pageSize: 10
+
+# 更新收藏夹
+test_collect_modify:
+  <<: *server
+  <<: *headers
+  <<: *put
+  url: /collect/modify
+  params:
+    <<: *collect_id
+    name: 收藏夹9
+
+# 删除收藏夹
+test_collect_delete_collect:
+  <<: *server
+  <<: *headers
+  <<: *delete
+  url: /collect/deleteCollected
+  params:
+    <<: *collect_id

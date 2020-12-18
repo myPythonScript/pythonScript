@@ -2,8 +2,9 @@ import pytest_check as ck
 from logging import log
 import pytest
 
+
 @pytest.mark.api
-def test_add_card(case_data,db,api):
+def test_add_card(case_data, db, api):
     # 读取yaml文件中的数据并拆分
     url = case_data['url']
     para = case_data['data']
@@ -26,6 +27,3 @@ def test_add_card(case_data,db,api):
     db.delete('cardinfo', 'cardNumber', cardnumber)
     print('数据已清理')
     log.info("添加的数据已被清理")
-
-
-
